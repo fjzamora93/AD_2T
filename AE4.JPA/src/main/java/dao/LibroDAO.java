@@ -1,6 +1,7 @@
 package dao;
 
 import database.HibernateUtil;
+import model.Autor;
 import model.Libro;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -11,7 +12,15 @@ import java.util.List;
 public class LibroDAO {
     private Session session;
 
+    public void addLIbro(Libro libro){
+        session = new HibernateUtil().getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.merge(libro);
 
+
+        session.getTransaction().commit();
+        session.close();
+    }
 
     // Mostrar todos los libros dados de alta, con su editorial y su autor
     public List<Libro> mostrarLibrosConEditorialYAutor() {

@@ -10,6 +10,15 @@ import java.util.List;
 public class AutorDAO {
     private Session session;
 
+    public void addAutor(Autor autor){
+        session = new HibernateUtil().getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.merge(autor);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+
     // Mostrar todos los autores dados de alta, con sus libros asociados
     public List<Autor> mostrarAutoresConLibros() {
 

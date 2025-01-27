@@ -13,6 +13,10 @@ import java.util.List;
 @Entity
 @Table(name = "autor")
 public class Autor implements Serializable {
+    public Autor(String nombre, String fechaNacimiento) {
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

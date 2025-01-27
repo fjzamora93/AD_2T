@@ -12,6 +12,10 @@ import java.util.List;
 @Entity
 @Table(name = "editorial")
 public class Editorial implements Serializable {
+    public Editorial(String nombre, String direccion) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

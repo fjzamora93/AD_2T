@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class Libro implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(unique = true)
+    @Column()
     private String titulo;
 
     @Column
@@ -37,4 +38,12 @@ public class Libro implements Serializable {
             fetch = FetchType.EAGER
     )
     private List<Libreria> librerias;
+
+    public Libro(String titulo, Double precio, Autor autor, Editorial editorial) {
+        this.titulo = titulo;
+        this.precio = precio;
+        this.autor = autor;
+        this.editorial = editorial;
+        this.librerias = new ArrayList<>();
+    }
 }

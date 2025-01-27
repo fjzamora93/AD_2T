@@ -1,7 +1,9 @@
 import dao.AutorDAO;
+import dao.EditorialDAO;
 import dao.LibreriaDAO;
 import dao.LibroDAO;
 import model.Autor;
+import model.Editorial;
 import model.Libreria;
 import model.Libro;
 
@@ -24,6 +26,7 @@ public class Main {
             System.out.println("2. Mostrar todos los autores con sus libros");
             System.out.println("3. Mostrar todas las librerías con sus libros");
             System.out.println("4. Mostrar todos los libros y las librerías en las que están");
+            System.out.println("5. Hacer la carga de todos los datos");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
@@ -69,6 +72,9 @@ public class Main {
                         }
                     }
                     break;
+                case 5:
+                    cargarDatos();
+                    break;
 
                 case 0:
                     System.out.println("Chao...");
@@ -82,5 +88,62 @@ public class Main {
         } while (opcion != 0);
 
         scanner.close();
+    }
+
+
+
+    public static void cargarDatos(){
+        LibroDAO libroDAO = new LibroDAO();
+        AutorDAO autorDAO = new AutorDAO();
+        LibreriaDAO libreriaDAO = new LibreriaDAO();
+        EditorialDAO editorialDao = new EditorialDAO();
+
+        System.out.println("Vamos que nos vamos, cargando editorial, libros, autores y la biblioteca entera:");
+
+        Autor jkRowling = new Autor("J.K. Rowling", "31-07-1965");
+        Autor tolkien = new Autor("J.R.R. Tolkien", "03-01-1892");
+        Autor georgeMartin = new Autor("George R.R. Martin", "20-09-1948");
+        autorDAO.addAutor(jkRowling);
+        autorDAO.addAutor(tolkien);
+        autorDAO.addAutor(georgeMartin);
+
+        Editorial bloomsbury = new Editorial("Bloomsbury", "50 Bedford Square, London");
+        Editorial harperCollins = new Editorial("HarperCollins", "195 Broadway, New York");
+        Editorial bantamBooks = new Editorial("Bantam Books", "1745 Broadway, New York");
+        editorialDao.addEditorial(bloomsbury);
+        editorialDao.addEditorial(harperCollins);
+        editorialDao.addEditorial(bantamBooks);
+
+        Libro libro1 = new Libro("Harry Potter and the Philosopher's Stone", 20.99, jkRowling, bloomsbury);
+        Libro libro2 = new Libro("Harry Potter and the Chamber of Secrets", 22.99, jkRowling, bloomsbury);
+        Libro libro3 = new Libro("The Hobbit", 15.99, tolkien, harperCollins);
+        Libro libro4 = new Libro("The Lord of the Rings: The Fellowship of the Ring", 25.99, tolkien, harperCollins);
+        Libro libro5 = new Libro("The Lord of the Rings: The Two Towers", 25.99, tolkien, harperCollins);
+        Libro libro6 = new Libro("The Lord of the Rings: The Return of the King", 25.99, tolkien, harperCollins);
+        Libro libro7 = new Libro("A Game of Thrones", 29.99, georgeMartin, bantamBooks);
+        Libro libro8 = new Libro("A Clash of Kings", 29.99, georgeMartin, bantamBooks);
+        libroDAO.addLIbro(libro1);
+        libroDAO.addLIbro(libro2);
+        libroDAO.addLIbro(libro3);
+        libroDAO.addLIbro(libro4);
+        libroDAO.addLIbro(libro5);
+        libroDAO.addLIbro(libro6);
+        libroDAO.addLIbro(libro7);
+        libroDAO.addLIbro(libro8);
+
+        Libreria libreria1 = new Libreria("Librería Cervantes", "Calle de Cervantes, 10, Madrid");
+        Libreria libreria2 = new Libreria("Librería La Central", "Calle de Mallorca, 237, Barcelona");
+        libreriaDAO.addLibreria(libreria1);
+        libreriaDAO.addLibreria(libreria2);
+
+        libreriaDAO.addLibroToLibreria(libro1, libreria2);
+        libreriaDAO.addLibroToLibreria(libro2, libreria2);
+        libreriaDAO.addLibroToLibreria(libro3, libreria2);
+        libreriaDAO.addLibroToLibreria(libro4, libreria2);
+        libreriaDAO.addLibroToLibreria(libro5, libreria1);
+        libreriaDAO.addLibroToLibreria(libro6, libreria1);
+        libreriaDAO.addLibroToLibreria(libro7, libreria1);
+        libreriaDAO.addLibroToLibreria(libro8, libreria1);
+
     }
 }

@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -12,6 +13,11 @@ import java.util.List;
 @Entity
 @Table(name = "libreria")
 public class Libreria implements Serializable {
+    public Libreria(String nombre, String direccion) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.libros = new ArrayList<>();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
