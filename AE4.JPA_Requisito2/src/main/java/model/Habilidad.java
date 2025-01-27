@@ -29,9 +29,12 @@ public class Habilidad {
     private String efecto;
 
     // Esta consulta tampoco nos va a interesar hacerla nunca, aunque lo dejamos abierto
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(
+            mappedBy = "habilidades",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
     private List<Personaje> personajes;
-
 
     @Override
     public String toString() {

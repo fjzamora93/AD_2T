@@ -15,6 +15,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@NamedQuery( name = "Personaje.findAll", query = "FROM Personaje" )
 @ToString
 public class Personaje {
 
@@ -31,13 +32,20 @@ public class Personaje {
     @Column(name = "raza")
     private String raza;
 
-    @OneToOne()
+    @OneToOne( cascade = CascadeType.ALL )
+    @JoinColumn( name = "id_statset" )
     private StatSet statset;
 
-    @ManyToOne()
+    @ManyToOne( cascade =  CascadeType.ALL )
+    @JoinColumn( name = "id_usuario" )
     private Usuario usuario;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany( cascade= CascadeType.ALL, fetch = FetchType.EAGER )
+    @JoinTable(
+            name = "personaje_habilidades",
+            joinColumns = @JoinColumn( name = "id_personaje" ),
+            inverseJoinColumns = @JoinColumn( name = "id_habilidad" )
+    )
     private List<Habilidad> habilidades;
 }
 

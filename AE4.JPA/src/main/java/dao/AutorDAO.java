@@ -1,4 +1,4 @@
-package dao;
+Qpackage dao;
 
 import database.HibernateUtil;
 import model.Autor;
@@ -25,7 +25,7 @@ public class AutorDAO {
         session = new HibernateUtil().getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        Query<Autor> query = session.createQuery("FROM Autor", Autor.class);
+        Query<Autor> query = session.createNamedQuery("Autor.findAll", Autor.class);
 
         List<Autor> listaAutores = query.list();
 

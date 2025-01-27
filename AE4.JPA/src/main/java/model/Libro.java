@@ -12,6 +12,7 @@ import java.util.List;
 @ToString
 @Setter
 @Entity
+@NamedQuery(name = "Libro.findAll", query = "FROM Libro")
 @Table(name = "libro")
 public class Libro implements Serializable {
     @Id

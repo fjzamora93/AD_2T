@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@NamedQuery(name = "Libreria.findAll", query = "FROM Libreria")
 @Table(name = "libreria")
 public class Libreria implements Serializable {
     public Libreria(String nombre, String direccion) {

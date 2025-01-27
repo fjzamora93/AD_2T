@@ -4,6 +4,7 @@ import database.HibernateUtil;
 import model.Personaje;
 import model.Usuario;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -15,31 +16,25 @@ public class UsuarioDAO {
         session = new HibernateUtil().getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        // Y aquí va el cuerpo de la consulta
+        Query<Usuario> query = session.createNamedQuery("Usuario.findAll", Usuario.class);
+        List<Usuario> listaUsuarios =  query.list();
 
         session.getTransaction().commit();
         session.close();
-        return null;
+        return listaUsuarios;
     };
 
     // Mostrar un usuario por su ID
     public Usuario mostrarUsuarioPorId(int id){
-        return null;
+        session = new HibernateUtil().getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        Usuario user = session.get(Usuario.class, id);
+
+        session.getTransaction().commit();
+        session.close();
+        return user;
     };
 
-    // Crear un nuevo usuario
-    public void crearUsuario(Usuario usuario){
-
-    };
-
-    // Eliminar un usuario por su ID
-    public void eliminarUsuario(int id){
-
-    };
-
-    // Mostrar los personajes de un usuario
-    public List<Personaje> mostrarPersonajesUsuario(int usuarioId){
-        return null;
-    };
 
 }

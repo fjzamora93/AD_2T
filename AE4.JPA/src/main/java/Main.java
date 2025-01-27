@@ -34,7 +34,7 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    List<Libro> libros = libroDAO.mostrarLibrosConEditorialYAutor();
+                    List<Libro> libros = libroDAO.mostrarTodos();
                     System.out.println("Libros con su editorial y autor:");
                     for (Libro libro : libros) {
                         System.out.println("Título: " + libro.getTitulo() +
@@ -62,7 +62,7 @@ public class Main {
                     break;
 
                 case 4:
-                    List<Libro> librosConLibrerias = libroDAO.mostrarLibrosEnLibrerias();
+                    List<Libro> librosConLibrerias = libroDAO.mostrarTodos();
                     System.out.println("Libros y las librerías en las que están:");
                     for (Libro libro : librosConLibrerias) {
                         System.out.println("Título: " + libro.getTitulo());

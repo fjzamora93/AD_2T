@@ -13,42 +13,58 @@ public class PersonajeDAO {
 
     // Mostrar un personaje por su ID
     public Personaje mostrarPersonajeById(int id){
+        session = new HibernateUtil().getSessionFactory().getCurrentSession();
+        session.beginTransaction();
 
-        return null;
+        Personaje personaje = session.get(Personaje.class, id);
+
+        session.getTransaction().commit();
+        session.close();
+        return personaje;
     };
 
     // Mostrar todos los personajes
     public List<Personaje> mostrarTodosPersonajes(){
-        return null;
+        session = new HibernateUtil().getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        Query<Personaje> query = session.createNamedQuery("Personaje.findAll", Personaje.class);
+        List<Personaje> listadoPersonajes = query.list();
+
+        session.getTransaction().commit();
+        session.close();
+        return listadoPersonajes;
     };
 
     // Crear un nuevo personaje
     public void crearPersonaje(Personaje personaje){
+        session = new HibernateUtil().getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        session.merge(Personaje);
+
+        session.getTransaction().commit();
+        session.close();
     };
 
     // Eliminar un personaje por su ID
     public void eliminarPersonaje(int id){
+        session = new HibernateUtil().getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Personaje personaje = session.get(Personaje.class, id);
+        session.delete(personaje);
+        session.getTransaction().commit();
+        session.close();
 
     };
 
     // Actualizar los detalles de un personaje
     public void actualizarPersonaje(Personaje personaje){
-
-    };
-
-    // Mostrar las habilidades de un personaje
-    public List<Habilidad> mostrarHabilidades(int personajeId){
-        return null;
-    };
-
-    // Mostrar los stats de un personaje
-    public StatSet mostrarStats(int personajeId){
-        return null;
-    };
-
-    // Mostrar el usuario asociado a un personaje
-    public Usuario mostrarUsuarioPersonaje(int personajeId){
-        return null;
+        session = new HibernateUtil().getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.merge(jugador);
+        session.getTransaction().commit();
+        session.close();
     };
 
 }

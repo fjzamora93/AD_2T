@@ -15,6 +15,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@NamedQuery( name = "Usuario.findAll", query = "FROM Usuario" )
 @ToString
 public class Usuario {
 
@@ -28,6 +29,6 @@ public class Usuario {
     @Column(name = "contraseña")
     private String contraseña;
 
-    @OneToMany()
+    @OneToMany( mappedBy = "usuario", fetch = FetchType.EAGER )
     private List<Personaje> personajes;
 }

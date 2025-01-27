@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "autor")
+@NamedQuery(name = "Autor.findAll", query = "FROM Autor")
 public class Autor implements Serializable {
     public Autor(String nombre, String fechaNacimiento) {
         this.nombre = nombre;

@@ -42,7 +42,7 @@ public class LibreriaDAO {
         session = new HibernateUtil().getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("from Libreria l JOIN FETCH l.libros", Libreria.class);
+        Query query = session.createNamedQuery("Libreria.findAll", Libreria.class);
         List<Libreria> listado = query.list();
 
         session.getTransaction().commit();

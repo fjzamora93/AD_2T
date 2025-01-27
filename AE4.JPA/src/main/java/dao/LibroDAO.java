@@ -1,7 +1,6 @@
 package dao;
 
 import database.HibernateUtil;
-import model.Autor;
 import model.Libro;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -23,11 +22,11 @@ public class LibroDAO {
     }
 
     // Mostrar todos los libros dados de alta, con su editorial y su autor
-    public List<Libro> mostrarLibrosConEditorialYAutor() {
+    public List<Libro> mostrarTodos() {
         session = new HibernateUtil().getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("from Libro", Libro.class);
+        Query query = session.createNamedQuery("Libro.findAll", Libro.class);
         List <Libro> librosList= query.list();
 
         session.getTransaction().commit();
@@ -36,19 +35,5 @@ public class LibroDAO {
         return librosList;
     }
 
-
-
-    public List <Libro> mostrarLibrosEnLibrerias() {
-        session = new HibernateUtil().getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-
-        Query query = session.createQuery("FROM Libro l JOIN FETCH l.librerias", Libro.class);
-        List <Libro> listaLibros = query.list();
-
-        session.getTransaction().commit();
-        session.close();
-
-        return listaLibros;
-    }
 
 }

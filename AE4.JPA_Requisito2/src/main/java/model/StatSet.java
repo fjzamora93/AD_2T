@@ -41,7 +41,7 @@ public class StatSet {
 
 
     // Ciertamente, no nos interesa saber qué personaje tiene cierto set de habilidades, esta consulta nunca se va a realizar.
-    @OneToOne()
+    @OneToOne( mappedBy = "statset" )
     private Personaje personaje;
 
 
