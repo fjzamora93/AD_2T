@@ -1,4 +1,5 @@
 package org.unir.libreria.model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,5 +29,6 @@ public class Editorial implements Serializable {
     private String direccion;
 
     @OneToMany( mappedBy = "editorial", fetch = FetchType.EAGER )
+    @JsonManagedReference("editorial-libros")
     private List<Libro> libros;
 }

@@ -1,4 +1,5 @@
 package org.unir.libreria.model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 

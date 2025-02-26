@@ -24,14 +24,14 @@ public class LibreriaController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping("/filter")
     public ResponseEntity<List<LibreriaEntity>> getByName(@RequestParam String name){
         List <LibreriaEntity> result  = service.getByName(name);
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LibreriaEntity> getById(@RequestParam int id){
+    public ResponseEntity<LibreriaEntity> getById(@PathVariable int id){
         LibreriaEntity result = service.getById(id);
         return ResponseEntity.ok(result);
     }

@@ -1,5 +1,6 @@
 package org.unir.libreria.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,10 +29,11 @@ public class Autor implements Serializable {
     private String nombre;
 
 
-    @Column
+    @Column(name = "fecha_nacimiento")
     private String fechaNacimiento;
 
     @OneToMany( mappedBy = "autor", fetch = FetchType.EAGER)
+    @JsonManagedReference("autor-libros")
     private List<Libro> libros;
 
 

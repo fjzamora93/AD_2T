@@ -27,7 +27,7 @@ public class LibroController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Libro> getById(@RequestParam int id){
+    public ResponseEntity<Libro> getById(@PathVariable int id){
         Libro result = service.getById(id);
         return ResponseEntity.ok(result);
     }

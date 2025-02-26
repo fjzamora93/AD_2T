@@ -21,14 +21,14 @@ public class EditorialController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping("/filter")
     public ResponseEntity<List<Editorial>> getByName(@RequestParam String name){
         List <Editorial> result  = service.getByName(name);
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Editorial> getById(@RequestParam int id){
+    public ResponseEntity<Editorial> getById(@PathVariable int id){
         Editorial result = service.getById(id);
         return ResponseEntity.ok(result);
     }

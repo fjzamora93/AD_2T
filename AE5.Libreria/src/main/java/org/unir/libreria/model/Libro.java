@@ -1,4 +1,6 @@
 package org.unir.libreria.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,10 +29,12 @@ public class Libro implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn( name = "id_autor")
+    @JsonBackReference("autor-libros")
     private Autor autor;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_editorial")
+    @JsonBackReference("editorial-libros")
     private Editorial editorial;
 
     @ManyToMany(
@@ -38,13 +42,13 @@ public class Libro implements Serializable {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
+    @JsonIgnore
     private List<LibreriaEntity> librerias;
 
-    public Libro(String titulo, Double precio, Autor autor, Editorial editorial) {
+
+
+    public Libro(String titulo, Double precio) {
         this.titulo = titulo;
         this.precio = precio;
-        this.autor = autor;
-        this.editorial = editorial;
-        this.librerias = new ArrayList<>();
     }
 }

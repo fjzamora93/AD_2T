@@ -23,14 +23,14 @@ public class AutorController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping("/filter")
     public ResponseEntity<List<Autor>> getByName(@RequestParam String name){
         List <Autor> result  = service.getByName(name);
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Autor> getById(@RequestParam int id){
+    public ResponseEntity<Autor> getById(@PathVariable int id){
         Autor result = service.getById(id);
         return ResponseEntity.ok(result);
     }
