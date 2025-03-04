@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+        <property name="current_session_context_class">thread</property>
+        <property name="connection.url">jdbc:mysql://localhost/unir</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">1234</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <mapping class="org.unir.examen.model.Profesor"/>
+        <mapping class="org.unir.examen.model.Alumno"/>
+        <mapping class="org.unir.examen.model.Aula"/>
+        <mapping class="org.unir.examen.model.Curso"/>
+    </session-factory>
+</hibernate-configuration>
